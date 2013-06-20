@@ -1,13 +1,13 @@
 <?php
 
-class Workcode_Controller extends Controller {
+class Device_Controller extends Controller {
 
 	public function action_index() {
 		return $this->retrievepageindex();
 	}
 	
 	public function action_view() {
-		$data['workcodes'] = Workcode::all();
+		$data['devices'] = Device::all();
 		return $this->retrievepageview($data);
 	}
 	
@@ -15,29 +15,29 @@ class Workcode_Controller extends Controller {
 		return View::make('home.registration', $data);
 	}
 	
-	private function retrievepageview($data) {
-		return View::make('table.workcodeview')->with($data);
+	private function retrievepageview($data=null) {
+		return View::make('table.deviceview')->with($data);
 	}
 	
 	private function checkifexists($id) {
-		return Workcode::find($id) != null;
+		return Device::find($id) != null;
 	}
 	
 	public function action_reg() {
-		$workcode = new Workcode();
+		$device = new Device();
 		$data = array();
-		$id = Input::get('workcodeid');
+		$id = Input::get('deviceno');
 		
 		if($this->checkifexists($id)) {
 			$data['error_message'] = 'id ' . $id . ' already exists!';
 		} else {
-			$workcode->id = $id;
-			$workcode->name = Input::get('workcode');
-			$workcode->remark = Input::get('remarks');
-			$data['success_message'] = 'successfully save lesson code, id '. $id . '!';
-			$workcode->save();
-		}		
-		$workcode = null;
+			$device->id = $id;
+			$device->IP = Input::get('ip');
+			$device->port = Input::get('port');
+			$data['success_message'] = 'successfully save device conf, id '. $id . '!';
+			$device->save();
+		}
+		$device = null;
 		return Redirect::to('/')->with('data', $data);
 	}
 }

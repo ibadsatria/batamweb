@@ -3,7 +3,7 @@
 
 Route::get('/', function()
 {
-	return View::make('home.index');
+	return View::make('home.registration');
 });
 
 Route::get('testing', function() {
@@ -13,6 +13,7 @@ Route::get('testing', function() {
 
 Route::controller('user');
 Route::controller('workcode');
+Route::controller('device');
 
 /*
 |--------------------------------------------------------------------------
