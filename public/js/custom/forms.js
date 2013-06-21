@@ -84,6 +84,36 @@ jQuery(document).ready(function(){
 		}
 	});
 	
+	jQuery("#userform").submit(function() {
+		// validate and process form
+		// first hide any error messages
+		jQuery('#message').hide();
+			
+		var userid = jQuery("input#userid").val();
+		var fullname = jQuery("input#fullname").val();
+		var csn = jQuery("input#csn").val();
+		var url = jQuery(this).attr('action');
+		
+		if(userid == null | fullname == null) return false;
+			
+		//var dataString = 'userid='+ userid + '&fullname=' + fullname + '&csn=' + csn;
+			//alert (dataString);return false;
+			
+		jQuery.ajax({
+		  type: "POST",
+		  url: url,
+		  data: jQuery(this).serialize(),
+		  success: function() {
+				jQuery('#message').html("<div class=\"notibar msgsuccess smallinput\"><a class=\"close\"></a><p>Data berhasil disimpan!</p></div>")
+				.hide()
+				.fadeIn(500, function() {
+				});
+			}
+		 });
+		return false;
+	});
+
+	
 	
 	///// TAG INPUT /////
 	
@@ -102,5 +132,22 @@ jQuery(document).ready(function(){
 		warning: 20,
 		counterText: 'Characters left: '	
 	});
+	
+	
+	/*jQuery.ajax({
+      type: "POST",
+      url: "bin/process.php",
+      data: dataString,
+      success: function() {
+        jQuery('#contact_form').html("<div id='message'></div>");
+        jQuery('#message').html("<h2>Contact Form Submitted!</h2>")
+        .append("<p>We will be in touch soon.</p>")
+        .hide()
+        .fadeIn(1500, function() {
+          jQuery('#message').append("<img id='checkmark' src='images/check.png' />");
+        });
+      }
+    });*/
+    return false;
 	
 });

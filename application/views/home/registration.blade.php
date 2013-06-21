@@ -8,24 +8,14 @@
 
 @section('main_section')
 	        <div id="contentwrapper" class="contentwrapper">
-			{{ $data = Session::get('data') }}
-			@if(isset($data['error_message']))
-				<<div class="notibar msgerror smallinput">
-					<a class="close"></a>
-					<p>{{ $data['error_message'] }} </p>
-				</div>
-			@elseif(isset($data['success_message']))
-				<div class="notibar msgsuccess smallinput">
-					<a class="close"></a>
-					<p>{{ $data['success_message'] }}</p>
-				</div>
-			@endif
 			<div id="userstuffwrapper" class="subcontent">
 				   <div class="contenttitle2">
                         <h3>Pendaftaran User </h3>
-                    </div><!--contenttitle-->					
+                    </div><!--contenttitle-->
+					
+					<div id="message"></div>
             	
-                    <form id="userform" class="stdform" method="post" action="{{ URL::to_action('user@reg') }}">
+                    <form id="userform" class="stdform" method="post" action="{{ URL::to_action('user@reg')}}">
                     	<p>
                         	<label>User ID</label>
                             <span class="field"><input type="text" name="userid" id="userid" class="smallinput" /></span>
@@ -67,7 +57,7 @@
                         </p>                       
                         
                         <p class="stdformbutton">
-                        	<button class="submit radius2">Save User</button>
+							<input type="submit" id="submit_btn" value="Save User" />
                             <input type="reset" class="reset radius2" value="Reset" />
                         </p>
                     </form>

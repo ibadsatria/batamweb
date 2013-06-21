@@ -356,8 +356,5 @@ jQuery(document).ready(function(){
 			jQuery('head').append('<link id="addonstyle" rel="stylesheet" href="css/style.'+c+'.css" type="text/css" />');
 			jQuery.cookie("addonstyle", c, { path: '/' });
 		}
-	}
-	
-	
-
+	};	
 });

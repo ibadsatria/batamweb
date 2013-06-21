@@ -25,15 +25,8 @@
 	
 	<div class="vernav2 iconmenu">
     	<ul>
-        	<li><a href="#formsub" class="widgets">Addition Utility</a>
-            	<span class="arrow"></span>
-            	<ul id="formsub">
-               		<li><a href="{{ URL::to('user/')}}">User Registration</a></li>
-                    <li><a href="wizard.html">Lesson Code Registration</a></li>
-                    <li><a href="editor.html">Device Registration</a></li>
-                </ul>
-            </li>            
-			<li><a href="#editsub" class="buttons">Edit Utility</a>
+        	<li><a href="{{ URL::to('user/')}}" class="widgets">Registration</a></li>            
+			<li><a href="#editsub" class="buttons">Edit</a>
 				<span class="arrow"></span>
             	<ul id="editsub">
                		<li><a href="{{ URL::to('user/view')}}">User List</a></li>
