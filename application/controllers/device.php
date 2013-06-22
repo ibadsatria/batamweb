@@ -24,20 +24,25 @@ class Device_Controller extends Controller {
 	}
 	
 	public function action_reg() {
+		header('Content-type: application/json');
+		
 		$device = new Device();
 		$data = array();
 		$id = Input::get('deviceno');
+		$response_array['iditem'] = $id;
 		
 		if($this->checkifexists($id)) {
-			$data['error_message'] = 'id ' . $id . ' already exists!';
+			$response_array['status'] = 'error';			
 		} else {
 			$device->id = $id;
 			$device->IP = Input::get('ip');
 			$device->port = Input::get('port');
 			$data['success_message'] = 'successfully save device conf, id '. $id . '!';
 			$device->save();
-		}
-		$device = null;
-		return Redirect::to('/')->with('data', $data);
+			
+			$device = null;
+			$response_array['status'] = 'success';
+		}		
+		echo json_encode($response_array);
 	}
 }

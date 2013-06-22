@@ -24,12 +24,17 @@ class User_Controller extends Controller {
 	}
 
 	public function action_reg() {
+		header('Content-type: application/json');
+		
 		$user = new User();
 		$data = array();
 		$id = Input::get('userid');
+		$response_array = array();
+		$response_array['iditem'] = $id;
 		
 		if($this->checkifexists($id)) {
-			$data['error_message'] = 'id ' . $id . ' already exists!';
+			//$data['error_message'] = 'id ' . $id . ' already exists!';
+			$response_array['status'] = 'error';
 		} else {
 			$user->id = $id;
 			$user->name = Input::get('fullname');
@@ -38,11 +43,17 @@ class User_Controller extends Controller {
 			$repassword = Input::get('password2');
 			if(Input::get('isactive') != null) $user->active = true;
 			$user->authority = Input::get('priviledge');
-			$data['success_message'] = 'successfully save user id '. $id . '!';
+			//$data['success_message'] = 'successfully save user id '. $id . '!';
 			$user->save();
-		}		
-		$user = null;
-		return Redirect::to('/')->with('data', $data);
+			
+			$user = null;
+			$response_array['status'] = 'success';
+		}
+		echo json_encode($response_array);
+	}
+	
+	public function action_delete($id) {
+		
 	}
 	
 	

@@ -89,29 +89,105 @@ jQuery(document).ready(function(){
 		// first hide any error messages
 		jQuery('#message').hide();
 			
-		var userid = jQuery("input#userid").val();
-		var fullname = jQuery("input#fullname").val();
-		var csn = jQuery("input#csn").val();
-		var url = jQuery(this).attr('action');
+		//var userid = jQuery("input#userid").val();
+		//var fullname = jQuery("input#fullname").val();
+		//var csn = jQuery("input#csn").val();
+		var url_ajax = jQuery(this).attr('action');
 		
-		if(userid == null | fullname == null) return false;
-			
-		//var dataString = 'userid='+ userid + '&fullname=' + fullname + '&csn=' + csn;
-			//alert (dataString);return false;
-			
-		jQuery.ajax({
-		  type: "POST",
-		  url: url,
-		  data: jQuery(this).serialize(),
-		  success: function() {
-				jQuery('#message').html("<div class=\"notibar msgsuccess smallinput\"><a class=\"close\"></a><p>Data berhasil disimpan!</p></div>")
-				.hide()
-				.fadeIn(500, function() {
-				});
+		if(jQuery("input#userid").val() == "" | jQuery("input#fullname").val() == "") {
+			return false;
+		} else {
+			jQuery.ajax({
+			type: "POST",
+			url: url_ajax,
+			data: jQuery(this).serialize(),
+			success: function(data) {
+				var response = JSON.parse(data);
+				if(response.status == 'success') {
+					jQuery('#message').html("<div class=\"notibar msgsuccess smallinput\"><a class=\"close\"></a><p>User " + response.iditem + " berhasil disimpan!</p></div>")
+					.hide()
+					.fadeIn(100, function() {
+						jQuery('input.reset').click();
+					});
+				} else if(response.status == 'error') {
+					jQuery('#message').html("<div class=\"notibar msgerror smallinput\"><a class=\"close\"></a><p>User " + response.iditem + " terdeteksi ganda!</p></div>")
+					.hide()
+					.fadeIn(100, function() {
+						//jQuery('input.reset').click();
+					});
+				}
+				
 			}
-		 });
-		return false;
+			});
+			return false;
+		}
 	});
+	
+	jQuery("#workcodeform").submit(function() {
+		jQuery('#message').hide();;
+		var url_ajax = jQuery(this).attr('action');
+		
+		if(jQuery("input#workcodeid").val() == "" | jQuery("input#workcode").val() == "") {
+			return false;
+		} else {
+			jQuery.ajax({
+			type: "POST",
+			url: url_ajax,
+			data: jQuery(this).serialize(),
+			success: function(data) {
+				var response = JSON.parse(data);
+				if(response.status == 'success') {
+					jQuery('#message_workcode').html("<div class=\"notibar msgsuccess smallinput\"><a class=\"close\"></a><p>Lesson Code " + response.iditem + " berhasil disimpan!</p></div>")
+					.hide()
+					.fadeIn(100, function() {
+						jQuery('input.reset').click();
+					});
+				} else if(response.status == 'error') {
+					jQuery('#message_workcode').html("<div class=\"notibar msgerror smallinput\"><a class=\"close\"></a><p>Device " + response.iditem + " terdeteksi ganda!</p></div>")
+					.hide()
+					.fadeIn(100, function() {
+						//jQuery('input.reset').click();
+					});
+				}
+				}
+			});
+				return false;
+		}
+	});
+	
+	jQuery("#deviceform").submit(function() {
+		jQuery('#message').hide();
+		var url_ajax = jQuery(this).attr('action');
+		
+		if(jQuery("input#deviceno").val() == "" | jQuery("input#ip").val() == "" | jQuery("input#port").val() == "") {
+			return false;
+		} else {
+			jQuery.ajax({
+			type: "POST",
+			url: url_ajax,
+			data: jQuery(this).serialize(),
+			success: function(data) {
+				var response = JSON.parse(data);
+				if(response.status == 'success') {
+					jQuery('#message_device').html("<div class=\"notibar msgsuccess smallinput\"><a class=\"close\"></a><p>Device Conf " + response.iditem+ " berhasil disimpan!</p></div>")
+					.hide()
+					.fadeIn(250, function() {
+						jQuery('input.reset').click();
+					});
+				} else if(response.status == 'error') {
+					jQuery('#message_device').html("<div class=\"notibar msgerror smallinput\"><a class=\"close\"></a><p>Terjadi kesalahan dalam menyimpan device " + response.iditem+ "!</p></div>")
+					.hide()
+					.fadeIn(250, function() {
+						jQuery('input.reset').click();
+					});
+				}				
+			}
+			});
+			return false;
+		}
+	});
+	
+	
 
 	
 	

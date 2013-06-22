@@ -24,20 +24,25 @@ class Workcode_Controller extends Controller {
 	}
 	
 	public function action_reg() {
+		header('Content-type: application/json');
+		
 		$workcode = new Workcode();
 		$data = array();
 		$id = Input::get('workcodeid');
+		$response_array = array();
+		$response_array['iditem'] = Input::get('workcode');
 		
 		if($this->checkifexists($id)) {
-			$data['error_message'] = 'id ' . $id . ' already exists!';
+			$response_array['status'] = 'error';
 		} else {
 			$workcode->id = $id;
 			$workcode->name = Input::get('workcode');
 			$workcode->remark = Input::get('remarks');
-			$data['success_message'] = 'successfully save lesson code, id '. $id . '!';
+			//$data['success_message'] = 'successfully save lesson code, id '. $id . '!';
 			$workcode->save();
-		}		
-		$workcode = null;
-		return Redirect::to('/')->with('data', $data);
+			$workcode = null;
+			$response_array['status'] = 'success';
+		}
+		echo json_encode($response_array);
 	}
 }

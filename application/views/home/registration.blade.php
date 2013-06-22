@@ -68,6 +68,8 @@
 				   <div class="contenttitle2">
                         <h3>Pendaftaran Mata Kuliah </h3>
                     </div><!--contenttitle-->
+					
+					<div id="message_workcode"></div>
             	
                     <form id="workcodeform" class="stdform" method="post" action="{{ URL::to_action('workcode@reg') }}">
                     	<p>
@@ -87,7 +89,7 @@
                         <br />
                         
                         <p class="stdformbutton">
-                        	<button class="submit radius2">Save Lesson Code</button>
+							<input type="submit" class="submit radius2" value="Save Lesson Code" />
                             <input type="reset" class="reset radius2" value="Reset" />
                         </p>
                     </form>
@@ -98,6 +100,8 @@
 				   <div class="contenttitle2">
                         <h3>Pendaftaran Device </h3>
                     </div><!--contenttitle-->
+					
+					<div id="message_device"></div>
                     <form id="deviceform" class="stdform" method="post" action="{{ URL::to_action('device@reg') }}">
                     	
                         <p>
