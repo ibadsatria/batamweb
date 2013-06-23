@@ -45,4 +45,20 @@ class Workcode_Controller extends Controller {
 		}
 		echo json_encode($response_array);
 	}
+	
+	public function action_delete($id) {
+		header('Content-type: application/json');
+		
+		$workcode = Workcode::find($id);
+		
+		$response_array = array();
+		$response_array['iditem'] = $id;
+		if($workcode->delete()) {
+			$response_array['status'] = 'success';
+		} else {
+			$response_array['status'] = 'error';
+		}
+		
+		echo json_encode($response_array);
+	}
 }

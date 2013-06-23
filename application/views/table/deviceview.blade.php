@@ -5,6 +5,7 @@
 @endsection
 
 @section('main_section')
+<div class="message"></div>
  <table cellpadding="0" cellspacing="0" border="0" class="stdtable" id="dyntable">
 	<colgroup>
 		<col class="con0" />
@@ -35,7 +36,7 @@
 			<td>{{ $device->ip }}</td>
 			<td>{{ $device->port }}</td>
 			<td>
-				<a class="btn btn3 btn_black btn_trash" href="#"></a>
+				<a class="btn btn3 btn_black btn_trash delete_button" href="{{ URL::to_action('device@delete', array($device->id)) }}"></a>
 			</td>
 		</tr>
 		@endforeach

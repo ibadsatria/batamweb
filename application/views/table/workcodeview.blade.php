@@ -6,6 +6,7 @@
 @endsection
 
 @section('main_section')
+<div class="message"></div>
  <table cellpadding="0" cellspacing="0" border="0" class="stdtable" id="dyntable">
 	<colgroup>
 		<col class="con0" />
@@ -35,7 +36,7 @@
 			<td>{{ $workcode->name}}</td>
 			<td>{{ $workcode->remark}} </td>
 			<td>
-				<a class="btn btn3 btn_black btn_trash" href="#"></a>
+				<a class="btn btn3 btn_black btn_trash delete_button" href="{{ URL::to_action('workcode@delete', array($workcode->id)) }}"></a>
 			</td>			
 		</tr>
 		@endforeach

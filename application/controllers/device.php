@@ -45,4 +45,20 @@ class Device_Controller extends Controller {
 		}		
 		echo json_encode($response_array);
 	}
+	
+	public function action_delete($id) {
+		header('Content-type: application/json');
+		
+		$device = Device::find($id);
+		
+		$response_array = array();
+		$response_array['iditem'] = $id;
+		if($device->delete()) {
+			$response_array['status'] = 'success';
+		} else {
+			$response_array['status'] = 'error';
+		}
+		
+		echo json_encode($response_array);
+	}
 }

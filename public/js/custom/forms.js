@@ -171,13 +171,13 @@ jQuery(document).ready(function(){
 				if(response.status == 'success') {
 					jQuery('#message_device').html("<div class=\"notibar msgsuccess smallinput\"><a class=\"close\"></a><p>Device Conf " + response.iditem+ " berhasil disimpan!</p></div>")
 					.hide()
-					.fadeIn(250, function() {
+					.fadeIn(25, function() {
 						jQuery('input.reset').click();
 					});
 				} else if(response.status == 'error') {
 					jQuery('#message_device').html("<div class=\"notibar msgerror smallinput\"><a class=\"close\"></a><p>Terjadi kesalahan dalam menyimpan device " + response.iditem+ "!</p></div>")
 					.hide()
-					.fadeIn(250, function() {
+					.fadeIn(25, function() {
 						jQuery('input.reset').click();
 					});
 				}				
@@ -185,6 +185,31 @@ jQuery(document).ready(function(){
 			});
 			return false;
 		}
+	});
+	
+	jQuery(".delete_button").click(function() {
+		var url_ajax = jQuery(this).attr('href');
+		jQuery.ajax({
+			type: "POST",
+			url: url_ajax,
+			success: function(data) {
+				var response = JSON.parse(data);
+				if(response.status == 'success') {
+					jQuery('.message').html("<div class=\"notibar msgsuccess smallinput\"><a class=\"close\"></a><p>ID " + response.iditem+ " berhasil dihapus!</p></div>")
+					.hide()
+					.fadeIn(25, function() {
+						jQuery('table.stdtable').animate();
+					});
+				} else if(response.status == 'error') {
+					jQuery('.message').html("<div class=\"notibar msgerror smallinput\"><a class=\"close\"></a><p>Terjadi kesalahan dalam menghapus ID " + response.iditem+ "!</p></div>")
+					.hide()
+					.fadeIn(25, function() {
+						jQuery('input.reset').click();
+					});
+				}				
+			}
+			});
+		return false;
 	});
 	
 	
