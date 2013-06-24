@@ -188,7 +188,8 @@ jQuery(document).ready(function(){
 	});
 	
 	jQuery(".delete_button").click(function() {
-		var url_ajax = jQuery(this).attr('href');
+		var currentObj = jQuery(this);
+		var url_ajax = currentObj.attr('href');
 		jQuery.ajax({
 			type: "POST",
 			url: url_ajax,
@@ -200,6 +201,7 @@ jQuery(document).ready(function(){
 					.fadeIn(25, function() {
 						jQuery('table.stdtable').animate();
 					});
+					currentObj.parent().parent().remove();
 				} else if(response.status == 'error') {
 					jQuery('.message').html("<div class=\"notibar msgerror smallinput\"><a class=\"close\"></a><p>Terjadi kesalahan dalam menghapus ID " + response.iditem+ "!</p></div>")
 					.hide()
