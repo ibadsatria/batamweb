@@ -35,7 +35,7 @@ class Device_Controller extends Controller {
 			$response_array['status'] = 'error';			
 		} else {
 			$device->id = $id;
-			$device->IP = Input::get('ip');
+			$device->ip = Input::get('ip');
 			$device->port = Input::get('port');
 			$data['success_message'] = 'successfully save device conf, id '. $id . '!';
 			$device->save();

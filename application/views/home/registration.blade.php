@@ -116,7 +116,7 @@
                         
                         <p>
                         	<label>Port</label>
-                            <span class="field"><input type="text" name="port" id="port" class="smallinput" value="4730" /></span>
+                            <span class="field"><input type="text" name="port" id="port" class="smallinput" value="4370" /></span>
                         </p>           
                         
                         <p class="stdformbutton">
