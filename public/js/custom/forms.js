@@ -214,6 +214,19 @@ jQuery(document).ready(function(){
 		return false;
 	});
 	
+	function isNumber(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 45 && (charCode != 46 || $(this).val().indexOf('.') != -1) && 
+                (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    } 
+	
+	jQuery("#password2, #password").keypress(function(event) {
+		return isNumber(event);
+	});
+	
 	
 
 	
